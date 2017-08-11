@@ -26,7 +26,11 @@ public class AuthorizatonServerConfig extends AuthorizationServerConfigurerAdapt
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
+        security
+                .tokenKeyAccess("permitAll()")
+                .checkTokenAccess("isAuthenticated()")
+                .allowFormAuthenticationForClients()
+        ;
     }
 
     @Override
@@ -34,8 +38,8 @@ public class AuthorizatonServerConfig extends AuthorizationServerConfigurerAdapt
         clients.inMemory()
                 .withClient("301575942")
                 .secret("wangyiyunyinyue")
-                .authorizedGrantTypes("authorization_code", "refresh_token", "password")
-                .scopes("friendships_groups_read", "statuses_to_me_read","follow_app_official_microblog")
+                .authorizedGrantTypes("authorization_code", "refresh_token", "password","client_credentials","implicit")
+                .scopes("read", "write")
         ;
     }
 

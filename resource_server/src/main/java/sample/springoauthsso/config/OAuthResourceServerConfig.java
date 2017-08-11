@@ -21,9 +21,11 @@ public class OAuthResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
+                .requestMatchers().anyRequest()  //API模式
+                .and()
                 .requestMatcher(BearerTokenRequestMatcher.build())
                 .authorizeRequests()
-                .anyRequest().authenticated().and()
+                .anyRequest().authenticated()
         ;
     }
 

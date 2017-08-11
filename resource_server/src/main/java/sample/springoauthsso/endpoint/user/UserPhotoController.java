@@ -1,15 +1,13 @@
 package sample.springoauthsso.endpoint.user;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequestMapping("/user/photo")
+@RestController
+@RequestMapping("/user")
 public class UserPhotoController {
 
-    @RequestMapping
-    @ResponseBody
+    @RequestMapping("/photo")
     public String fetchPhotos() {
         return "List of photos";
     }

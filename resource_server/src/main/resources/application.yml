@@ -1,0 +1,15 @@
+server:
+  port: 8700
+security:
+  oauth2:
+    sso:
+      login-path: /sso
+    client:
+      access-token-uri: http://localhost:9000/auth/oauth/token
+      user-authorization-uri: http://localhost:9000/auth/oauth/authorize
+      client-id: 301575942
+      client-secret: wangyiyunyinyue
+    resource:
+      token-info-uri: http://localhost:9000/auth/oauth/check_token
+
+

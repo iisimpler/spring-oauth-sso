@@ -1,0 +1,8 @@
+server:
+  port: 9000
+  context-path: /auth
+spring:
+  redis:
+    host: 127.0.0.1
+    database: 12
+    password: Redis.123

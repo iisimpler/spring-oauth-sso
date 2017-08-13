@@ -1,15 +1,15 @@
+authorization-server: http://localhost:5000
+
 server:
-  port: 8700
+  port: 5001
 security:
   oauth2:
     sso:
       login-path: /sso
     client:
-      access-token-uri: http://localhost:9000/auth/oauth/token
-      user-authorization-uri: http://localhost:9000/auth/oauth/authorize
+      access-token-uri: ${authorization-server}/auth/oauth/token
+      user-authorization-uri: ${authorization-server}/auth/oauth/authorize
       client-id: 301575942
       client-secret: wangyiyunyinyue
     resource:
-      token-info-uri: http://localhost:9000/auth/oauth/check_token
-
-
+      token-info-uri: ${authorization-server}/auth/oauth/check_token

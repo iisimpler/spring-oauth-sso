@@ -1,8 +1,13 @@
 server:
-  port: 9000
+  port: 5000
   context-path: /auth
 spring:
   redis:
     host: 127.0.0.1
     database: 12
     password: Redis.123
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/sso?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
+      username: root
+      password: Root.123

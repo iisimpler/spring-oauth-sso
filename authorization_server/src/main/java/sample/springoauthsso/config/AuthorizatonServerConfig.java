@@ -11,6 +11,8 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
+import javax.sql.DataSource;
+
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizatonServerConfig extends AuthorizationServerConfigurerAdapter {
@@ -18,10 +20,13 @@ public class AuthorizatonServerConfig extends AuthorizationServerConfigurerAdapt
     private final AuthenticationManager authenticationManager;
     private final RedisConnectionFactory redisConnectionFactory;
 
+    private final DataSource dataSource;
+
     @Autowired
-    public AuthorizatonServerConfig(AuthenticationManager authenticationManager, RedisConnectionFactory redisConnectionFactory) {
+    public AuthorizatonServerConfig(AuthenticationManager authenticationManager, RedisConnectionFactory redisConnectionFactory, DataSource dataSource) {
         this.authenticationManager = authenticationManager;
         this.redisConnectionFactory = redisConnectionFactory;
+        this.dataSource = dataSource;
     }
 
     @Override
@@ -29,6 +34,9 @@ public class AuthorizatonServerConfig extends AuthorizationServerConfigurerAdapt
         security
                 .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()")
+
+                //enable client to get the authenticated when using the /oauth/token to get a access token
+                //there is a 401 authentication is required if it doesn't allow form authentication for clients when access /oauth/token
                 .allowFormAuthenticationForClients()
         ;
     }
@@ -38,8 +46,9 @@ public class AuthorizatonServerConfig extends AuthorizationServerConfigurerAdapt
         clients.inMemory()
                 .withClient("301575942")
                 .secret("wangyiyunyinyue")
-                .authorizedGrantTypes("authorization_code", "refresh_token", "password","client_credentials","implicit")
+                .authorizedGrantTypes("authorization_code", "password", "client_credentials", "implicit", "refresh_token")
                 .scopes("read", "write")
+                //.autoApprove(true)
         ;
     }
 

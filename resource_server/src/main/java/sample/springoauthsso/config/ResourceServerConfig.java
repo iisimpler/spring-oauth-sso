@@ -13,10 +13,11 @@ import java.util.Optional;
 
 @Configuration
 @EnableResourceServer
-public class OAuthResourceServerConfig extends ResourceServerConfigurerAdapter {
+public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+
     }
 
     @Override

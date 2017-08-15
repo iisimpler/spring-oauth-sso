@@ -81,7 +81,7 @@ public class AuthorizatonServerConfig extends AuthorizationServerConfigurerAdapt
                 .tokenStore(tokenStore())
                 // 添加自定义Token字段
                 .tokenEnhancer(tokenEnhancerChain)
-                .accessTokenConverter(accessTokenConverter())
+                //.accessTokenConverter(accessTokenConverter())
         ;
     }
 
